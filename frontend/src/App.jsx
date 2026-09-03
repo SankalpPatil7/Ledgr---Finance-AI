@@ -39,6 +39,7 @@ import {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("showcase"); // Default 3D Showcase Front
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDb, setActiveDb] = useState("ledgr.db");
   const [healthScore, setHealthScore] = useState(85);
   const [exposureAmount, setExposureAmount] = useState(65384.04);
@@ -153,6 +154,23 @@ export default function App() {
       {/* Luxury Ambient Lighting & Organic Stipple Texture */}
       <AnimatedBackground />
 
+      {/* Mobile Menu Button */}
+      <button
+        className="mobile-menu-button"
+        onClick={() => setMobileMenuOpen(true)}
+        aria-label="Open navigation menu"
+      >
+        ☰
+      </button>
+
+      {/* Mobile Menu Backdrop */}
+      {mobileMenuOpen && (
+        <div
+          className="mobile-menu-backdrop"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Sidebar Navigation */}
       <Sidebar
         activeTab={activeTab}
@@ -160,12 +178,14 @@ export default function App() {
         activeDb={activeDb}
         healthScore={healthScore}
         onOpenCommandPalette={() => setCommandPaletteOpen(true)}
+        mobileMenuOpen={mobileMenuOpen}
+        onMobileClose={() => setMobileMenuOpen(false)}
       />
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto h-screen relative z-10">
-        {/* Top Header */}
-        <Header
+       {/* Main Content Area */}
+       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto h-screen relative z-10">
+         {/* Top Header */}
+         <Header
           activeTab={activeTab}
           activeDb={activeDb}
           exposureAmount={exposureAmount}

@@ -21,7 +21,15 @@ import {
   Search
 } from "lucide-react";
 
-export default function Sidebar({ activeTab, setActiveTab, activeDb, healthScore, onOpenCommandPalette }) {
+export default function Sidebar({
+  activeTab,
+  setActiveTab,
+  activeDb,
+  healthScore,
+  onOpenCommandPalette,
+  mobileMenuOpen,
+  onMobileClose,
+}) {
   const navSections = [
     {
       title: "SHOWCASE & OVERVIEW",
@@ -55,7 +63,11 @@ export default function Sidebar({ activeTab, setActiveTab, activeDb, healthScore
   ];
 
   return (
-    <aside className="w-64 bg-[var(--bg-surface)]/80 backdrop-blur-2xl border-r border-white/[0.08] flex flex-col justify-between h-screen sticky top-0 select-none z-30 shadow-2xl">
+    <aside
+        className={`ledgr-sidebar w-64 bg-[var(--bg-surface)]/80 backdrop-blur-2xl border-r border-white/[0.08] flex flex-col justify-between h-screen sticky top-0 select-none z-30 shadow-2xl ${
+          mobileMenuOpen ? "mobile-sidebar-open" : ""
+        }`}
+      >
       {/* Brand Header */}
       <div>
         <div className="p-5 border-b border-white/[0.08] flex items-center justify-between">
@@ -104,7 +116,10 @@ export default function Sidebar({ activeTab, setActiveTab, activeDb, healthScore
                 return (
                   <button
                     key={item.id}
-                    onClick={() => setActiveTab(item.id)}
+                    onClick={() => {
+                      setActiveTab(item.id);
+                      onMobileClose?.();
+                    }}
                     className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 group relative ${
                       isActive
                         ? "bg-white/[0.09] text-white font-bold border border-white/[0.12] shadow-sm"
