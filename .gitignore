@@ -1,0 +1,62 @@
+﻿# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+
+
+# =========================
+# Environment Variables / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+
+# =========================
+# Node / Vite
+# =========================
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+
+# =========================
+# Databases & Logs
+# =========================
+*.log
+
+# Ignore local/generated database files
+*.sqlite
+*.sqlite3
+
+# Keep the LEDGR seed database
+!backend/data/ledgr.db
+
+# Ignore generated/imported data
+backend/data/*.csv
+backend/data/*.xlsx
+
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
